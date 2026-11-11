@@ -1,24 +1,14 @@
-Name: Earl Justin D. Somoray
-Section: BSICT - 3B
+Name: EARL JUSTIN D. SOMORAY
+Section: BSICT-3B
 
-## Postman API Verification Screenshots
+Screenshot Checklist:
+DONE - 01-public-api-200.png
+DONE - 02-register-201.png
+DONE - 03-login-200.png
+DONE - 04-profile-no-token-401.png
+DONE - 05-profile-with-token-200.png
+DONE - 06-invalid-login-422.png
+DONE - 07-logout-200.png
+DONE - 08-revoked-token-401.png
 
-Here are the test results verifying the full functionality and security of your Laravel 13 API endpoints:
-
-### 1. Public Test Endpoint
-
-### 2. User Registration
-
-### 3. User Login
-
-### 4. Profile Access Without Token (Unauthorized)
-
-### 5. Profile Access With Bearer Token
-
-### 6. Invalid Login Validation Error
-
-### 7. User Logout
-
-### 8. Revoked Token Access Attempt
-
-GitHub Repository: https://github.com/dioscuritwentysiete-arch/Laravel_API_LabActivity
+GitHub Link: https://github.com/dioscuritwentysiete-arch/laravel13-secure-api-lab
