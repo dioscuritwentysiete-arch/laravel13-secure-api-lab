@@ -1,21 +1,32 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
 
-Route::get('/hello', function () {
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::match(['get', 'post'], '/profile', [AuthController::class, 'profile']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+Route::middleware(['auth:sanctum', 'role:admin,student'])->get('/students', function () {
     return response()->json([
-        'message' => 'Welcome to the Laravel 13 API',
+        ['id' => 1, 'name' => 'Earl Justin'],
+        ['id' => 2, 'name' => 'John Doe'],
     ]);
 });
 
-Route::post('/register', [AuthController::class, 'register'])
-    ->middleware('throttle:6,1');
+Route::middleware(['auth:sanctum', 'admin'])->get('/admin/dashboard', function () {
+    return response()->json(['message' => 'Welcome Admin!']);
+});
 
-Route::post('/login', [AuthController::class, 'login'])
-    ->middleware('throttle:6,1');
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/profile', [AuthController::class, 'profile']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+Route::middleware(['auth:sanctum', 'role:student'])->get('/student/dashboard', function () {
+    return response()->json(['message' => 'Welcome Student!']);
 });
